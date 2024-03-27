@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/apiClient";
-import { CanceledError } from "axios";
+import useData from "./useData";
 
 export interface Platform {
   id: number;
@@ -17,37 +15,7 @@ export interface Game {
   metacritic: number;
 }
 
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    setLoading(true);
-    apiClient
-      .get<FetchGamesResponse>("/games", { signal: controller.signal })
-      .then((res) => {
-        setGames(res.data.results);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setLoading(false);
-      });
-    //.finally(setLoading(false)); But it doesn't work with strict mode one
-
-    return () => controller.abort();
-  }, []);
-
-  return { games, error, isLoading };
-};
+const useGames = () => useData<Game>("/games");
 
 export default useGames;
