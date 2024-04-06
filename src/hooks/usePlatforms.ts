@@ -17,6 +17,4 @@ const usePlatforms = () => useQuery<FetchResponse<Platform>, Error>({
     initialData: { count: platforms.length, results: platforms }
 }) 
 
-//useData<Platform>("/platforms/lists/parents")
-
 export default usePlatforms;
