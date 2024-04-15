@@ -1,5 +1,4 @@
 import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GameHeading from "./components/GameHeading";
 import GenreList from "./components/GenreList";
@@ -8,8 +7,6 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
 const App = () => {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-
   return (
     <Grid
       templateAreas={{
@@ -22,39 +19,22 @@ const App = () => {
       }}
     >
       <GridItem area="nav">
-        <NavBar
-          onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
-        ></NavBar>
+        <NavBar></NavBar>
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
-          <GenreList
-            onSelectGenre={(genre) =>
-              setGameQuery({ ...gameQuery, genreId: genre.id })
-            }
-            selectedGenreId={gameQuery.genreId}
-          ></GenreList>
+          <GenreList></GenreList>
         </GridItem>
       </Show>
       <GridItem area="main">
         <Box paddingLeft={10}>
-          <GameHeading gameQuery={gameQuery}></GameHeading>
+          <GameHeading></GameHeading>
           <HStack spacing={5}>
-            <PlatformSelector
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platformId: platform.id })
-              }
-              selectedPlatformId={gameQuery.platformId}
-            ></PlatformSelector>
-            <SortSelector
-              sortOrder={gameQuery.sortOrder}
-              onSelectSortOrder={(sortOrder) =>
-                setGameQuery({ ...gameQuery, sortOrder })
-              }
-            ></SortSelector>
+            <PlatformSelector></PlatformSelector>
+            <SortSelector></SortSelector>
           </HStack>
         </Box>
-        <GameGrid gameQuery={gameQuery}></GameGrid>
+        <GameGrid></GameGrid>
       </GridItem>
     </Grid>
   );
