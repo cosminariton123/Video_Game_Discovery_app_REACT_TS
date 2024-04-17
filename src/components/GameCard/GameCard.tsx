@@ -22,7 +22,7 @@ const GameCard = ({ game }: Props) => {
           <CriticScore score={game.metacritic}></CriticScore>
         </HStack>
         <Heading fontSize="2xl">
-          <Link to={"/games/" + game.slug}>{game.name}</Link>
+          <Link to={"/vilabran/games/" + game.slug}>{game.name}</Link>
           <Emoji rating={game.rating_top}></Emoji>
         </Heading>
       </CardBody>

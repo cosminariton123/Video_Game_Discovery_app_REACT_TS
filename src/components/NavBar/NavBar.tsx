@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <HStack paddingY="30px" paddingX={5}>
-      <Link to="/">
+      <Link to="/vilabran">
         <Image src={logo} boxSize="60px" objectFit="cover"></Image>
       </Link>
       <SearchInput></SearchInput>
