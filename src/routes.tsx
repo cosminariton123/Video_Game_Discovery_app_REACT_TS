@@ -6,12 +6,12 @@ import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/vilabran",
     element: <Layout></Layout>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       { index: true, element: <HomePage></HomePage> },
-      { path: "/games/:slug", element: <GameDetailPage></GameDetailPage> },
+      { path: "games/:slug", element: <GameDetailPage></GameDetailPage> },
     ],
   },
 ]);
